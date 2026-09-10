@@ -1,0 +1,248 @@
+ALGORITMO PRINCIPAL
+
+INÍCIO
+    criar vetor de ações com capacidade para 100 registros
+    total de ações ← 0
+
+    REPITA
+        EXIBIR "1 - Cadastrar ação"
+        EXIBIR "2 - Listar ações"
+        EXIBIR "3 - Pesquisar ação"
+        EXIBIR "4 - Atualizar situação"
+        EXIBIR "5 - Gerar resumo"
+        EXIBIR "0 - Sair"
+
+        LER opção
+
+        ESCOLHA opção
+            CASO 1:
+                cadastrar ação
+            CASO 2:
+                listar ações
+            CASO 3:
+                pesquisar ação
+            CASO 4:
+                atualizar situação
+            CASO 5:
+                gerar resumo
+            CASO 0:
+                EXIBIR "Programa encerrado."
+            CASO CONTRÁRIO:
+                EXIBIR "Opção inválida."
+        FIM ESCOLHA
+    ATÉ opção = 0
+FIM
+
+
+PROCEDIMENTO CADASTRAR AÇÃO
+
+INÍCIO
+    SE total de ações = 100 ENTÃO
+        EXIBIR "Limite de ações atingido."
+        RETORNAR
+    FIM SE
+
+    LER código
+
+    ENQUANTO código já estiver cadastrado FAÇA
+        EXIBIR "Código repetido. Informe outro código."
+        LER código
+    FIM ENQUANTO
+
+    LER escola
+    LER tema
+    LER data prevista
+    LER público-alvo
+    LER responsável
+    LER quantidade prevista de participantes
+
+    ENQUANTO algum campo obrigatório estiver vazio OU
+             a data estiver inválida OU
+             a quantidade prevista for negativa FAÇA
+        EXIBIR "Existem informações inválidas."
+        SOLICITAR a correção das informações
+    FIM ENQUANTO
+
+    situação ← "Planejada"
+    quantidade efetiva ← 0
+
+    ARMAZENAR a nova ação no vetor
+    total de ações ← total de ações + 1
+
+    EXIBIR "Ação cadastrada com sucesso."
+FIM
+
+
+PROCEDIMENTO LISTAR AÇÕES
+
+INÍCIO
+    SE total de ações = 0 ENTÃO
+        EXIBIR "Nenhuma ação cadastrada."
+        RETORNAR
+    FIM SE
+
+    PARA cada ação cadastrada FAÇA
+        EXIBIR código
+        EXIBIR escola
+        EXIBIR tema
+        EXIBIR data prevista
+        EXIBIR público-alvo
+        EXIBIR responsável
+        EXIBIR quantidade prevista
+        EXIBIR situação
+        EXIBIR quantidade efetiva
+    FIM PARA
+FIM
+
+
+PROCEDIMENTO PESQUISAR AÇÃO
+
+INÍCIO
+    SE total de ações = 0 ENTÃO
+        EXIBIR "Nenhuma ação cadastrada."
+        RETORNAR
+    FIM SE
+
+    EXIBIR "1 - Pesquisar por código"
+    EXIBIR "2 - Pesquisar por escola"
+    EXIBIR "3 - Pesquisar por tema"
+
+    LER tipo de pesquisa
+
+    SE tipo de pesquisa = 1 ENTÃO
+        LER código
+
+        PROCURAR código no vetor
+
+        SE o código for encontrado ENTÃO
+            EXIBIR os dados da ação
+        SENÃO
+            EXIBIR "Ação não encontrada."
+        FIM SE
+
+    SENÃO SE tipo de pesquisa = 2 ENTÃO
+        LER nome da escola
+
+        PROCURAR ações da escola
+
+        SE alguma ação for encontrada ENTÃO
+            EXIBIR as ações encontradas
+        SENÃO
+            EXIBIR "Nenhuma ação encontrada."
+        FIM SE
+
+    SENÃO SE tipo de pesquisa = 3 ENTÃO
+        LER tema
+
+        PROCURAR ações relacionadas ao tema
+
+        SE alguma ação for encontrada ENTÃO
+            EXIBIR as ações encontradas
+        SENÃO
+            EXIBIR "Nenhuma ação encontrada."
+        FIM SE
+
+    SENÃO
+        EXIBIR "Opção de pesquisa inválida."
+    FIM SE
+FIM
+
+
+PROCEDIMENTO ATUALIZAR SITUAÇÃO
+
+INÍCIO
+    LER código da ação
+
+    PROCURAR código no vetor
+
+    SE o código não for encontrado ENTÃO
+        EXIBIR "Ação não encontrada."
+        RETORNAR
+    FIM SE
+
+    EXIBIR os dados da ação
+    EXIBIR "1 - Planejada"
+    EXIBIR "2 - Realizada"
+    EXIBIR "3 - Cancelada"
+
+    LER nova situação
+
+    SE nova situação = 1 ENTÃO
+        situação ← "Planejada"
+        quantidade efetiva ← 0
+
+    SENÃO SE nova situação = 2 ENTÃO
+        situação ← "Realizada"
+        LER quantidade efetiva de participantes
+
+        ENQUANTO quantidade efetiva for negativa FAÇA
+            EXIBIR "Quantidade inválida."
+            LER novamente a quantidade efetiva
+        FIM ENQUANTO
+
+    SENÃO SE nova situação = 3 ENTÃO
+        situação ← "Cancelada"
+        quantidade efetiva ← 0
+
+    SENÃO
+        EXIBIR "Situação inválida."
+        RETORNAR
+    FIM SE
+
+    EXIBIR "Deseja confirmar a alteração? 1 - Sim | 0 - Não"
+    LER confirmação
+
+    SE confirmação = 1 ENTÃO
+        SALVAR as alterações
+        EXIBIR "Ação atualizada com sucesso."
+    SENÃO
+        MANTER os dados anteriores
+        EXIBIR "Alteração cancelada."
+    FIM SE
+FIM
+
+
+PROCEDIMENTO GERAR RESUMO
+
+INÍCIO
+    planejadas ← 0
+    realizadas ← 0
+    canceladas ← 0
+    total previsto ← 0
+    previsto das realizadas ← 0
+    total efetivo ← 0
+
+    PARA cada ação cadastrada FAÇA
+        total previsto ← total previsto + quantidade prevista da ação
+
+        SE situação = "Planejada" ENTÃO
+            planejadas ← planejadas + 1
+
+        SENÃO SE situação = "Realizada" ENTÃO
+            realizadas ← realizadas + 1
+            previsto das realizadas ← previsto das realizadas
+                                      + quantidade prevista da ação
+            total efetivo ← total efetivo
+                            + quantidade efetiva da ação
+
+        SENÃO SE situação = "Cancelada" ENTÃO
+            canceladas ← canceladas + 1
+        FIM SE
+    FIM PARA
+
+    EXIBIR total de ações
+    EXIBIR quantidade de ações planejadas
+    EXIBIR quantidade de ações realizadas
+    EXIBIR quantidade de ações canceladas
+    EXIBIR total previsto
+    EXIBIR total efetivo
+
+    SE previsto das realizadas > 0 ENTÃO
+        percentual ← total efetivo × 100
+                     ÷ previsto das realizadas
+
+        EXIBIR percentual de participação
+    SENÃO
+        EXIBIR "Não foi possível calcular o percentual."
+    FIM SE
+FIM
