@@ -56,7 +56,7 @@ O menu permanece ativo até que o usuário selecione a opção `0 - Sair`.
 
 O arquivo-fonte principal está localizado em:
 
-`src/main.c`
+`src/codigo.cpp`
 
 **Importante:** mantenha a extensão `.c` para que o arquivo seja compilado como linguagem C.
 
