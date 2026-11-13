@@ -1,75 +1,192 @@
-# AEP_ESOFT2S-N-C_SAUDE-MENTAL
+# PSE em Ação — AEP UniCesumar 2026
 
-# PSE em Ação
+**Segunda entrega — implementação e apresentação**  
+Engenharia de Software — ESOFT2S-N-C — UniCesumar
 
-Projeto desenvolvido para a AEP do segundo semestre de 2026 da UniCesumar.
+O **PSE em Ação** é uma aplicação desenvolvida em linguagem C e executada no terminal para apoiar o cadastro e o acompanhamento de ações coletivas do Programa Saúde na Escola (PSE).
 
-O PSE em Ação será uma aplicação em linguagem C, executada no terminal, para auxiliar no planejamento e no acompanhamento de ações coletivas do Programa Saúde na Escola.
+O sistema reúne informações de cada atividade, permite acompanhar sua situação e apresenta um resumo das participações previstas e efetivas.
 
 ## Integrantes
 
-- Fernando Leme Origuela — RA 26008686-2
-- Lucas Fontes Telles — RA 25194145-2
-- Lucas Gabriel — RA 26014302-2
+- Fernando Leme Origuela
+- Lucas Fontes Telles
+- Lucas Gabriel
 
-## Curso e turma
+## Objetivo e escopo
 
-Engenharia de Software — ESOFT2S-N-C
+O sistema foi desenvolvido para auxiliar um operador da equipe responsável pelo planejamento das ações coletivas do Programa Saúde na Escola.
 
-## Objetivo
+São utilizados dados fictícios e informações coletivas. O programa não cadastra estudantes individualmente, não armazena prontuários ou dados clínicos e não realiza diagnósticos ou atendimentos de saúde.
 
-Desenvolver uma aplicação que permita cadastrar, listar, pesquisar e acompanhar ações coletivas do Programa Saúde na Escola.
+Os registros são armazenados temporariamente na memória durante a execução. Ao encerrar o programa, os dados são descartados.
 
-O sistema também permitirá atualizar a situação das ações e gerar um resumo com as quantidades de atividades planejadas, realizadas e canceladas.
+## Funcionalidades implementadas
 
-## Funcionalidades planejadas
+1. **Cadastrar ação:** registra código, escola, tema, data prevista, público-alvo, responsável e participações previstas.
+2. **Listar ações:** exibe todos os registros cadastrados durante a execução atual.
+3. **Pesquisar ações:** permite pesquisar por código, escola ou tema, inclusive utilizando trechos de texto.
+4. **Atualizar situação:** permite alterar uma ação para planejada, realizada ou cancelada.
+5. **Registrar participações efetivas:** permite informar a quantidade efetiva de participações quando uma ação é marcada como realizada.
+6. **Gerar resumo geral:** apresenta totais por situação, participações previstas e efetivas e o percentual de participação das ações realizadas.
 
-- Cadastrar ações do PSE;
-- Listar as ações cadastradas;
-- Pesquisar por código, escola ou tema;
-- Atualizar a situação de uma ação;
-- Registrar a quantidade efetiva de participantes;
-- Gerar um resumo geral;
-- Validar as informações digitadas.
+O menu permanece ativo até que o usuário selecione a opção `0 - Sair`.
 
-## Tema de contextualização
+## Regras e limites do sistema
 
-A saúde mental será utilizada como tema principal nos exemplos da aplicação. Entretanto, o sistema permitirá cadastrar ações relacionadas a outros temas do PSE.
+- Capacidade máxima de 100 ações por execução.
+- Código inteiro entre 1 e 999999, sem repetição.
+- Participações previstas e efetivas entre 0 e 10000.
+- Data no formato DD/MM/AAAA, respeitando a existência da data no calendário e os anos bissextos.
+- Campos de texto obrigatórios, com limite de 80 caracteres.
+- Toda ação começa com a situação **Planejada** e zero participações efetivas.
+- Ao confirmar uma alteração para Planejada ou Cancelada, as participações efetivas são zeradas.
+- A pesquisa por escola e tema utiliza `strstr`, diferenciando letras maiúsculas, minúsculas e acentos.
+- O percentual considera somente as participações previstas das ações realizadas. Quando essa previsão é zero, o cálculo não é efetuado.
 
-## Privacidade
+## Tecnologias utilizadas
 
-O sistema utilizará somente informações fictícias e coletivas.
+- Linguagem C.
+- Dev-C++ como ambiente de desenvolvimento.
+- GCC/MinGW para compilação.
+- Git e GitHub para versionamento e organização do projeto.
+- Vetores, estruturas (`struct`), funções, estruturas condicionais e laços de repetição.
 
-Não serão cadastrados nomes de estudantes, diagnósticos, prontuários, condições clínicas ou outros dados pessoais.
+## Ambiente e compilação
 
-## Etapa atual
+O arquivo-fonte principal está localizado em:
 
-O projeto está na primeira etapa, dedicada à análise e ao planejamento da solução.
+`src/main.c`
 
-Nesta etapa foram elaborados:
+**Importante:** mantenha a extensão `.c` para que o arquivo seja compilado como linguagem C.
 
-- contextualização;
-- problema e objetivos;
-- justificativa;
-- definição dos usuários;
-- escopo do sistema;
-- requisitos funcionais e não funcionais;
-- fluxogramas;
-- pseudocódigos;
-- planejamento das sprints;
-- análise de riscos e plano de testes.
+### Compilação pelo Dev-C++ (Windows)
 
-A implementação completa em linguagem C será realizada nas próximas etapas.
+1. Abra o Dev-C++.
+2. Selecione **Arquivo > Abrir**.
+3. Localize e abra o arquivo `src/main.c`.
+4. Confira se o arquivo está identificado como C.
+5. Selecione **Executar > Compilar e Executar**.
+6. O terminal será aberto com o menu principal do PSE em Ação.
+
+### Compilação pelo GCC/MinGW (Windows)
+
+Na pasta principal do repositório, execute:
+
+```bash
+gcc -std=c11 -Wall -Wextra -Wpedantic -O2 src/main.c -o pse_em_acao.exe
+```
+
+Para executar pelo PowerShell:
+
+```powershell
+.\pse_em_acao.exe
+```
+
+Também está disponível o arquivo `compilar_e_executar_windows.bat`, que automatiza a compilação e a execução quando o GCC/MinGW está instalado e configurado no PATH.
+
+### Compilação pelo GCC (Linux)
+
+```bash
+gcc -std=c11 -Wall -Wextra -Wpedantic -O2 src/main.c -o pse_em_acao
+./pse_em_acao
+```
+
+## Testes funcionais
+
+A versão `src/main.c` foi compilada em C11 com GCC 14.2.0, utilizando as opções `-Wall -Wextra -Wpedantic -O2`, sem erros ou avisos no ambiente de verificação utilizado.
+
+A suíte de testes funcionais contém **29 cenários**, todos aprovados nessa verificação.
+
+Os testes verificam situações como:
+
+- Cadastro e listagem de ações.
+- Código duplicado.
+- Campos vazios e textos muito longos.
+- Validação de números e datas.
+- Pesquisa por código, escola e tema.
+- Atualização de situação e participações efetivas.
+- Geração do resumo geral.
+- Limite de armazenamento de 100 ações.
+- Encerramento e reinicialização do programa.
+
+Para executar novamente os testes, é necessário ter Python 3 e GCC disponíveis no PATH.
+
+Na pasta principal do repositório, execute:
+
+```bash
+python tests/testes_funcionais.py
+```
+
+O script compila o código-fonte, executa os cenários e atualiza os arquivos de resultados:
+
+- `tests/resultados_testes.json` — resultados detalhados.
+- `tests/RELATORIO_TESTES.md` — relatório dos cenários executados.
+
+Também foi realizada uma verificação complementar com AddressSanitizer e UndefinedBehaviorSanitizer em um cenário representativo de cadastro, atualização e resumo, sem alertas nesse cenário.
+
+**Observação:** a compilação e os testes foram verificados no ambiente utilizado para esta revisão. A equipe deve realizar a conferência final no Dev-C++ instalado no computador Windows utilizado na disciplina.
 
 ## Organização do repositório
 
-- `docs/`: documentação da AEP;
-- `src/`: código-fonte em linguagem C;
-- `tests/`: registros e resultados dos testes.
+```text
+PSE-em-Acao/
+│
+├── README.md
+├── .gitignore
+├── compilar_e_executar_windows.bat
+│
+├── src/
+│   └── main.c
+│
+├── docs/
+│   ├── AEP_PSE_em_Acao_Segunda_Entrega.pdf
+│   ├── AEP_PSE_em_Acao_Segunda_Entrega.docx
+│   ├── Manual_de_Usuario_PSE_em_Acao.pdf
+│   ├── Primeira_Entrega_Original.pdf
+│   ├── casos_de_uso.md
+│   ├── requisitos_atualizados.md
+│   └── roteiro_video.md
+│
+├── Diagramas e Fluxogramas/
+│   ├── diagrama_casos_uso.png
+│   ├── diagrama_casos_uso.dot
+│   ├── fluxograma_geral_primeira_entrega.png
+│   └── fluxograma_cadastro_primeira_entrega.png
+│
+├── Prints/
+│   ├── 1.png
+│   ├── 2.png
+│   ├── 3.png
+│   ├── 4.png
+│   ├── 5.png
+│   ├── 6.png
+│   └── 7.png
+│
+└── tests/
+    ├── testes_funcionais.py
+    ├── resultados_testes.json
+    ├── RELATORIO_TESTES.md
+    ├── README_TESTES.md
+    └── VERIFICACAO_SANITIZADORES.md
+```
 
-## Tecnologias planejadas
+## Documentação e apresentação
 
-- Linguagem C;
-- Aplicação executada no terminal;
-- Git e GitHub para versionamento;
-- Armazenamento temporário em memória.
+O projeto possui os seguintes documentos complementares:
+
+- **Documento técnico da segunda entrega:** `docs/AEP_PSE_em_Acao_Segunda_Entrega.pdf`.
+- **Documento editável:** `docs/AEP_PSE_em_Acao_Segunda_Entrega.docx`.
+- **Manual do usuário:** `docs/Manual_de_Usuario_PSE_em_Acao.pdf`.
+- **Primeira entrega:** `docs/Primeira_Entrega_Original.pdf`.
+- **Casos de uso:** `docs/casos_de_uso.md`.
+- **Requisitos atualizados:** `docs/requisitos_atualizados.md`.
+- **Roteiro de apresentação:** `docs/roteiro_video.md`.
+
+Os diagramas, fluxogramas e capturas de tela também estão disponíveis nas respectivas pastas do repositório.
+
+O vídeo de apresentação deve ser disponibilizado com acesso liberado para avaliação e respeitar a duração máxima de 7 minutos estabelecida no enunciado da AEP.
+
+---
+
+**Projeto acadêmico — UniCesumar — Engenharia de Software — 2º semestre de 2026.**
