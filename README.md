@@ -102,16 +102,14 @@ PSE-em-Acao/
 ├── compilar_e_executar_windows.bat
 │
 ├── src/
-│   └── main.c
+│   └── codigo.cpp
+│   └── codigoPrincipal.exe
 │
 ├── docs/
 │   ├── AEP_PSE_em_Acao_Segunda_Entrega.pdf
-│   ├── AEP_PSE_em_Acao_Segunda_Entrega.docx
 │   ├── Manual_de_Usuario_PSE_em_Acao.pdf
 │   ├── Primeira_Entrega_Original.pdf
-│   ├── casos_de_uso.md
-│   ├── requisitos_atualizados.md
-│   └── roteiro_video.md
+│   ├──Apresentacao_PSE
 │
 ├── Diagramas e Fluxogramas/
 │   ├── diagrama_casos_uso.png
