@@ -48,7 +48,7 @@ O menu permanece ativo até que o usuário selecione a opção `0 - Sair`.
 
 - Linguagem C.
 - Dev-C++ como ambiente de desenvolvimento.
-- GCC/MinGW para compilação.
+- Python para testes.
 - Git e GitHub para versionamento e organização do projeto.
 - Vetores, estruturas (`struct`), funções, estruturas condicionais e laços de repetição.
 
