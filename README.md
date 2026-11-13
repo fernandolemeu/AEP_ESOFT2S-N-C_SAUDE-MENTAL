@@ -70,9 +70,6 @@ O arquivo-fonte principal está localizado em:
 6. O terminal será aberto com o menu principal do PSE em Ação.
 
 ## Testes funcionais
-
-A versão `src/main.c` foi compilada em C11 com GCC 14.2.0, utilizando as opções `-Wall -Wextra -Wpedantic -O2`, sem erros ou avisos no ambiente de verificação utilizado.
-
 A suíte de testes funcionais contém **29 cenários**, todos aprovados nessa verificação.
 
 Os testes verificam situações como:
@@ -87,22 +84,13 @@ Os testes verificam situações como:
 - Limite de armazenamento de 100 ações.
 - Encerramento e reinicialização do programa.
 
-Para executar novamente os testes, é necessário ter Python 3 e GCC disponíveis no PATH.
+Para executar novamente os testes, é necessário ter Python 3 disponíveis no PATH.
 
 Na pasta principal do repositório, execute:
 
 ```bash
-python tests/testes_funcionais.py
+python tests/testar_codigo.py
 ```
-
-O script compila o código-fonte, executa os cenários e atualiza os arquivos de resultados:
-
-- `tests/resultados_testes.json` — resultados detalhados.
-- `tests/RELATORIO_TESTES.md` — relatório dos cenários executados.
-
-Também foi realizada uma verificação complementar com AddressSanitizer e UndefinedBehaviorSanitizer em um cenário representativo de cadastro, atualização e resumo, sem alertas nesse cenário.
-
-**Observação:** a compilação e os testes foram verificados no ambiente utilizado para esta revisão. A equipe deve realizar a conferência final no Dev-C++ instalado no computador Windows utilizado na disciplina.
 
 ## Organização do repositório
 
