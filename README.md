@@ -139,13 +139,8 @@ PSE-em-Acao/
 │   ├── 5.png
 │   ├── 6.png
 │   └── 7.png
-│
 └── tests/
-    ├── testes_funcionais.py
-    ├── resultados_testes.json
-    ├── RELATORIO_TESTES.md
-    ├── README_TESTES.md
-    └── VERIFICACAO_SANITIZADORES.md
+    └── testar_codigo.py
 ```
 
 ## Documentação e apresentação
