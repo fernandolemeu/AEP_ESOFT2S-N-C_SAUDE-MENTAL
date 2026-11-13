@@ -69,29 +69,6 @@ O arquivo-fonte principal está localizado em:
 5. Selecione **Executar > Compilar e Executar**.
 6. O terminal será aberto com o menu principal do PSE em Ação.
 
-### Compilação pelo GCC/MinGW (Windows)
-
-Na pasta principal do repositório, execute:
-
-```bash
-gcc -std=c11 -Wall -Wextra -Wpedantic -O2 src/main.c -o pse_em_acao.exe
-```
-
-Para executar pelo PowerShell:
-
-```powershell
-.\pse_em_acao.exe
-```
-
-Também está disponível o arquivo `compilar_e_executar_windows.bat`, que automatiza a compilação e a execução quando o GCC/MinGW está instalado e configurado no PATH.
-
-### Compilação pelo GCC (Linux)
-
-```bash
-gcc -std=c11 -Wall -Wextra -Wpedantic -O2 src/main.c -o pse_em_acao
-./pse_em_acao
-```
-
 ## Testes funcionais
 
 A versão `src/main.c` foi compilada em C11 com GCC 14.2.0, utilizando as opções `-Wall -Wextra -Wpedantic -O2`, sem erros ou avisos no ambiente de verificação utilizado.
