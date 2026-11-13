@@ -1,6 +1,4 @@
 # Relatório de testes funcionais — PSE em Ação
-
-**Ambiente de verificação:** GCC, padrão C11, opções `-Wall -Wextra -Wpedantic -O2`.
 **Método:** testes de caixa-preta com entradas simuladas no terminal e conferência das mensagens/valores produzidos.
 **Resultado:** 29/29 aprovados; 0 falharam.
 
